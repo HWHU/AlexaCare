@@ -1,0 +1,13 @@
+<ion-modal-view>
+  <ion-header-bar align-title="center" class="bar bar-header bar-calm">
+    <h1 class="title">Patient Details</h1>
+  </ion-header-bar>
+  <ion-content class="patient-modal">
+		<img ng-src="{{selected_patient.img}}">
+    <h2>{{selected_patient.name}}</h2>
+    <p>{{selected_patient.place}}</p>
+    <button class="button button-block button-positive" ng-click="closePatientModal()">
+      Done
+    </button>
+  </ion-content>
+</ion-modal-view>
