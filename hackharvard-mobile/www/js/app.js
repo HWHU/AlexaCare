@@ -94,7 +94,7 @@ angular.module('starter', ['ionic', 'ionic.cloud'])
     console.log('Token saved:', t.token);
   });
   $scope.$on('cloud:push:notification', function(event, data) {
-    var msg = data.message;
-    alert(msg.title + ': ' + msg.text);
+    console.log(data);
+    $scope.openAlertModal();
   });
 });
