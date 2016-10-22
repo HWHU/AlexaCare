@@ -1,0 +1,16 @@
+/* Empty. Add your own CSS if you like */
+
+.patient-modal, .alert-modal {
+	padding: 10px;
+}
+.patient-modal img, .alert-modal img{
+    width: 100%;
+    border-radius: 50%;
+}
+.patient-modal h2, .alert-modal h2{
+	text-align: center;
+}
+.patient-modal p, .alert-modal p{
+	text-align: center;
+	color: gray;
+}
