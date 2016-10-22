@@ -8,7 +8,8 @@ http://amzn.to/1LGWsLG
 """
  
 from __future__ import print_function
-import requests
+import urllib2
+import json
 from datetime import datetime as dt
 
 # ----- main handler -------
@@ -117,21 +118,25 @@ def call_nurse(intent, session):
     card_title = intent['name']
     session_attributes = {}
 
-    url = 'https://api.ionic.io/push/notifications'
-    data = {
-        "tokens": [],
+    req_url = 'https://api.ionic.io/push/notifications'
+    req_data = {
+        "tokens": [""],
         "send_to_all": True,
         "profile": "harvardhealthhack",
         "notification": {
             "message": "Your patient needs you!"
         }
-
+    }
+    req_headers = {
+        "Content-Type": "application/json", 
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4MmJhNzFlNi01MDZmLTQ4NGUtODI3NS0yMTI2OTg1OGJjZTMifQ.E5fBTbqH3EizEANut52cXQjJQsKF6xYuPQhPUnicZ34"
     }
 
-    push_request = requsts.post(url, json=data) # send POST request to push notification endpoint
+    push_request = urllib2.Request(url=req_url, data=req_data, headers=req_headers) # send POST request to push notification endpoint
+    push_response = urllib2.urlopen(push_request, json.dumps(req_data)) 
 
- 
     speech_output = "I've called your nurse."
+    reprompt_text = "nope."
     should_end_session = True
 
     return build_response(session_attributes, build_speechlet_response(
