@@ -10,4 +10,5 @@ class PatientForm(forms.ModelForm):
 			'total_calls',
 			'response_time',
 			'location',
+            'user',
 		)		
