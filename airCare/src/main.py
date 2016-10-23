@@ -12,6 +12,8 @@ import urllib2
 import json
 from datetime import datetime as dt
 
+room_number = "" 
+
 # ----- main handler -------
  
 def lambda_handler(event, context):
@@ -71,8 +73,10 @@ def on_intent(intent_request, session):
 
 
     # Dispatch to custom skill's intent handlers
-    if intent_name == "CallNurseIntent":
-        return call_nurse(intent, session)
+    if intent_name == "CallCareIntent":
+        return call_care(intent, session)
+    elif intent_name == "SetupIntent":
+        return setup_room(intent, session)
     elif intent_name == "AMAZON.HelpIntent":
         return get_welcome_response()
     else:
@@ -98,21 +102,38 @@ def get_welcome_response():
  
     session_attributes = {}
     card_title = "Welcome"
-    speech_output = "Welcome to the Ear-Out Patient care system! " \
-                    "Please ask me to call a nurse by saying, " \
-                    "Call nurse!"
+    speech_output = "Welcome to the Alexa-Care Patient management system! " \
+                    "You can call for help by saying, " \
+                    "Tell my care I need help, or I'm in pain."
     # If the user either does not reply to the welcome message or says something
     # that is not understood, they will be prompted again with this text.
-    reprompt_text = "You can call a nurse by saying, " \
-                    "Call nurse!"
+    reprompt_text = "You can ask for help by saying, " \
+                    "I need help."
     should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
- 
- 
-def call_nurse(intent, session):
+        
+def setup_room(intent, session):
     """ 
-    Hits a push notification endpoint for the mobile app, calling a nurse. 
+    Allows intial information to be set, specifically the room of which the echo lives.
+    """
+ 
+    card_title = intent['name']
+    session_attributes = {}
+    
+    answer_slot_valid = intent['slots']['RoomNumber']
+
+    speech_output = "This room has been initialized." + answer_slot_valid
+    reprompt_text = ""
+    should_end_session = True
+
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))        
+ 
+# Function for calling the care 
+def call_care(intent, session):
+    """ 
+    Hits a push notification endpoint for the mobile app, calling for care. 
     """
  
     card_title = intent['name']
@@ -135,8 +156,8 @@ def call_nurse(intent, session):
     push_request = urllib2.Request(url=req_url, data=req_data, headers=req_headers) # send POST request to push notification endpoint
     push_response = urllib2.urlopen(push_request, json.dumps(req_data)) 
 
-    speech_output = "I've called your nurse."
-    reprompt_text = "nope."
+    speech_output = "I've called your care."
+    reprompt_text = ""
     should_end_session = True
 
     return build_response(session_attributes, build_speechlet_response(

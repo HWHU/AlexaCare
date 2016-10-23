@@ -1,0 +1,21 @@
+CallCareIntent where they are
+CallCareIntent to come and help me
+CallCareIntent to come help me
+CallCareIntent to help me
+CallCareIntent I need help
+CallCareIntent I need assistance
+CallCareIntent I'm in pain
+CallCareIntent I'm hurting
+CallCareIntent what time he's coming
+CallCareIntent what time she's coming
+CallCareIntent what time they are coming
+CallCareIntent when they are coming
+CallCareIntent when she is coming
+CallCareIntent when he is coming
+
+SetupIntent initialize as room {room_number}
+SetupIntent register as room {room_number}
+SetupIntent initialize room {room_number}
+SetupIntent register room {room_number}
+
+
