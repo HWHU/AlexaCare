@@ -1,0 +1,34 @@
+
+<nav class="navbar navbar-default navbar-static-top remove-bottom-margin">
+	<div class="container-fluid">
+	    <div class="navbar-header">
+		    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+	      	</button>
+	    	<a class="navbar-brand" href="{% url 'home_page' %}">
+
+	    		<b>BEAVER</b>
+	    	</a>
+    	</div>
+    	<div class="collapse navbar-collapse">
+	      <ul class="nav navbar-nav navbar-right">
+			
+			{% if user.is_authenticated %}
+		    	<li><a href="#">Logged In as {{ user.get_short_name }}!</a></li>
+		    	<li><a href="{% url 'auth_logout' %}">Logout</a></li>
+			{% else %}
+		    	<li><a href="{% url 'auth_login' %}">Login</a></li>
+				<li><a href="{% url 'registration_register' %}">Sign Up</a></li>
+			{% endif %}
+
+	      	<li><a href="{% url 'jobs:create' %}"><b>Create a Job</b></a></li>
+
+	      </ul>
+		</div>
+	</div>
+</nav>
+
+
