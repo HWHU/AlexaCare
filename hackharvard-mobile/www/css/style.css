@@ -2,15 +2,13 @@
 
 .patient-modal, .alert-modal {
 	padding: 10px;
+	text-align: center;
 }
 .patient-modal img, .alert-modal img{
-    width: 100%;
+    width: 80%;
+    max-width: 300px;
     border-radius: 50%;
 }
-.patient-modal h2, .alert-modal h2{
-	text-align: center;
-}
 .patient-modal p, .alert-modal p{
-	text-align: center;
 	color: gray;
 }
