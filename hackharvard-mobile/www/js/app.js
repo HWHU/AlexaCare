@@ -82,9 +82,18 @@ angular.module('starter', ['ionic', 'ionic.cloud'])
   $scope.responding = false;
   $scope.alert = false;
   $scope.patients = [
-    {name:'jeffrsy', place: 'Rm 101', img: 'http://i.imgur.com/sRL8ez6.png'},
-    {name:'jeadsfsy', place: 'Rm 121', img: 'http://i.imgur.com/sRL8ez6.png'},
-    {name:'jeffasdy', place: 'Rm 141', img: 'http://i.imgur.com/sRL8ez6.png'},
+    {name:'Satchel French', place: 'Rm 121', img: 'https://umpetrogeo.files.wordpress.com/2011/03/patrickgou_passport-size_cropped.jpg', total_time: 1530,
+    call_count:143
+    },
+    {name:'Yuan Chen', place: 'Rm 142', img: 'http://buzzcard.gatech.edu/PublishingImages/passport2.png', total_time: 430,
+    call_count: 33
+    },
+    {name:'Dave Frankie', place: 'Rm 154', img: 'https://upload.wikimedia.org/wikipedia/commons/3/32/Passport_Size_Image_of_Nouman.jpg', total_time: 630,
+    call_count: 73
+    },
+    {name:'Waiyanphyo Hein', place: 'Rm 44', img: 'http://blogs.brightspyre.com/wp-content/uploads/2015/01/ORGINAL-KARTHIK-PASSPORT-SIZE.jpg ', total_time: 1030,
+    call_count: 93
+    }
   ];
 
   /* Push Notifications */
@@ -95,6 +104,27 @@ angular.module('starter', ['ionic', 'ionic.cloud'])
   });
   $scope.$on('cloud:push:notification', function(event, data) {
     console.log(data);
+
+    $scope.selected_patient = $scope.patients[0];
     $scope.openAlertModal();
+  });
+
+  /* Initialize app */
+  Backend.getPatients(function(success){
+    $scope.patients = [
+      {name:'Satchel French', place: 'Rm 121', img: 'https://umpetrogeo.files.wordpress.com/2011/03/patrickgou_passport-size_cropped.jpg', total_time: 1530,
+      call_count:143
+      },
+      {name:'Yuan Chen', place: 'Rm 142', img: 'http://buzzcard.gatech.edu/PublishingImages/passport2.png', total_time: 430,
+      call_count: 33
+      },
+      {name:'Dave Frankie', place: 'Rm 154', img: 'https://upload.wikimedia.org/wikipedia/commons/3/32/Passport_Size_Image_of_Nouman.jpg', total_time: 630,
+      call_count: 73
+      },
+      {name:'Waiyanphyo Hein', place: 'Rm 44', img: 'http://blogs.brightspyre.com/wp-content/uploads/2015/01/ORGINAL-KARTHIK-PASSPORT-SIZE.jpg ', total_time: 1030,
+      call_count: 93
+      }
+    ];
+
   });
 });
