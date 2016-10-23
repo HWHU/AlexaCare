@@ -1,0 +1,25 @@
+{
+  "intents": [
+    {
+      "intent": "CallCareIntent"
+    },
+    {
+      "intent": "SetupIntent",
+      "slots": [
+        {
+          "name": "RoomNumber",
+          "type": "AMAZON.NUMBER"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+ }
