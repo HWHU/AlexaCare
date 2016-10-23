@@ -1,1 +1,0 @@
-web: gunicorn AlexaCare.wsgi --log-file -

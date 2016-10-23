@@ -13,9 +13,4 @@ CallCareIntent when they are coming
 CallCareIntent when she is coming
 CallCareIntent when he is coming
 
-SetupIntent initialize as room {RoomNumber}
-SetupIntent register as room {RoomNumber}
-SetupIntent initialize room {RoomNumber}
-SetupIntent register room {RoomNumber}
-
 

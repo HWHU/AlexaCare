@@ -75,8 +75,6 @@ def on_intent(intent_request, session):
     # Dispatch to custom skill's intent handlers
     if intent_name == "CallCareIntent":
         return call_care(intent, session)
-    elif intent_name == "SetupIntent":
-        return setup_room(intent, session)
     elif intent_name == "AMAZON.HelpIntent":
         return get_welcome_response()
     else:
@@ -112,23 +110,6 @@ def get_welcome_response():
     should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
-        
-def setup_room(intent, session):
-    """ 
-    Allows intial information to be set, specifically the room of which the echo lives.
-    """
- 
-    card_title = intent['name']
-    session_attributes = {}
-    
-    answer_slot_valid = intent['slots']['RoomNumber']
-
-    speech_output = "This room has been initialized." + answer_slot_valid
-    reprompt_text = ""
-    should_end_session = True
-
-    return build_response(session_attributes, build_speechlet_response(
-        card_title, speech_output, reprompt_text, should_end_session))        
  
 # Function for calling the care 
 def call_care(intent, session):
