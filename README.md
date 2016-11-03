@@ -20,3 +20,6 @@ But hopefully it will be a polished application soon!
 # License
 
 This product is not available for commerical use.
+All rights reserved by Satchel French & Jerry Chen
+
+(It will however be available for free soon in the alexa skills store)
